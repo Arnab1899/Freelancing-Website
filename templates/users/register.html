@@ -1,0 +1,29 @@
+{% load crispy_forms_tags %}
+<h2 style = "text-align:center">
+    Welcome to Administrative Account Registration
+</h2> <br>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+<div style = "padding-left:25%; padding-right:25%;">
+    <form method = "POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+        {{form|crispy }}
+
+    </fieldset>
+        <button class="submit form-group btn btn-outline-info">
+            Sign Up
+        </button>
+
+
+    </form>
+
+
+
+
+</div>
+
+
+
