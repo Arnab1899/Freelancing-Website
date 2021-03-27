@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'site_users',
     'crispy_forms',
+    'job_giver',
+    'job_seeker',
+    'jobs',
 ]
 
 MIDDLEWARE = [
