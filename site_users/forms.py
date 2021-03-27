@@ -3,13 +3,13 @@ from django.contrib.auth.models import User
 
 
 class UseRegistrationForm(UserCreationForm):
-    First_name = forms.EmailField()
-    Last_name = forms.EmailField()
+    First_name = forms.CharField()
+    Last_name = forms.CharField()
     email = forms.EmailField()
-    Phone_Number = forms.EmailField()
-    Profession = forms.EmailField()
-    Age = forms.EmailField()
-    Address = forms.EmailField()
+    Phone_Number = forms.IntegerField()
+    Profession = forms.CharField()
+    Age = forms.IntegerField()
+    Address = forms.CharField()
 
     class Meta:
         model = User
