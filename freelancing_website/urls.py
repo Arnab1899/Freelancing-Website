@@ -24,6 +24,8 @@ urlpatterns = [
     path('base/', site_views.base, name='first-page'),
     path('register/', site_views.register),
     path('register_admin/', site_views.register_admin),
-    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login')
+    path('find_work/', site_views.find_work),
+    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+
 
 ]

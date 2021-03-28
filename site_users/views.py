@@ -39,6 +39,11 @@ def register_admin(request):
         return render(request, 'users/register_admin.html', context)
 
 
+def find_work(request):
+    return render(request, 'users/find_work.html')
+
+
+
 
 
 
