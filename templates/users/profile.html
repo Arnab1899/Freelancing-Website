@@ -1,0 +1,43 @@
+{% load crispy_forms_tags %}
+
+</head>
+        {%load static%}
+
+        <link rel="stylesheet" href=" {% static 'site_users/style.css' %}">
+
+            {% block tittle %}
+
+            {% endblock %}
+
+
+</head>
+<body>
+
+<div class="topnav">
+     <a class="active" href="{% url 'first-page'%}">Home</a>
+    <a href="{% url 'profile_update' %}">Update Profile</a>
+    <a href="{% url 'work-find' %}">Find Work</a>
+    <a href="{% url 'logout' %}">Log Out</a>
+</div>
+
+<div style="padding-left:16px">
+    {% block content %}
+    <br>
+  <img style="height: 30px; width:30px" class="rounded-circle"
+       src="{{ user.profile.profile_picture.url }}"
+       alt ="{{ user.profile.profile_picture.url }}">
+
+ {{user.username}}
+
+ {% endblock %}
+
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
