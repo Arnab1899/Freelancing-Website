@@ -28,7 +28,6 @@ urlpatterns = [
     path('profile/', site_views.profile, name='profile'),
     path('profile/update', site_views.profile_update, name='profile_update'),
     path('accounts/profile/', site_views.base),
-    path('register/', site_views.register, name='user-reg'),
     path('register_admin/', site_views.register_admin, name='admin-reg'),
     path('find_work/', site_views.find_work, name='work-find'),
     path('', site_views.find_work, name='work'),

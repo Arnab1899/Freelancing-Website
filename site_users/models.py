@@ -18,11 +18,19 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
     about = models.CharField(max_length=150, blank=True)
+    age = models.CharField(max_length=3, blank=True)
+    profession = models.CharField(max_length=15, blank=True)
+    address = models.CharField(max_length=100, blank=True)
     email = models.EmailField()
     phone = models.IntegerField()
     profile_picture = models.ImageField(default='default.jpg', upload_to='profile_picture')
 
     def __str__(self):
-        return self.user.username
+        return {self.user.username}
+
+
+
+
+
 
 

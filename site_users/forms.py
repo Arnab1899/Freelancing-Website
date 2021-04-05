@@ -7,10 +7,6 @@ class UseRegistrationForm(UserCreationForm):
     First_name = forms.CharField()
     Last_name = forms.CharField()
     email = forms.EmailField()
-    Phone_Number = forms.CharField()
-    Profession = forms.CharField()
-    Age = forms.IntegerField()
-    Address = forms.CharField()
 
     class Meta:
         model = User
@@ -18,33 +14,34 @@ class UseRegistrationForm(UserCreationForm):
                   'First_name',
                   'Last_name',
                   'email',
-                  'Phone_Number',
                   'password1',
                   'password2',
-                  'Profession',
-                  'Age',
-                  'Address',
                   ]
 
 
-class UserJobSetForm(UserCreationForm):
-    Job_Name = forms.CharField()
-    Job_Type = forms.CharField()
-    Job_Description = forms.CharField()
-    Job_Requirements = forms.CharField()
-    Job_Experience = forms.CharField()
-    Job_Salary = forms.IntegerField()
-    Job_Location = forms.CharField()
+class UserJobSetForm(forms.ModelForm):
+    Company_Name = forms.CharField()
+    Title = forms.CharField()
+    Work_Type = forms.CharField()
+    Description = forms.CharField()
+    Requirements = forms.CharField()
+    Experience = forms.CharField(required=False)
+    Salary = forms.IntegerField()
+    Location = forms.CharField(required=False)
+    Vacancy = forms.CharField(required=False)
 
     class Meta:
         model = User
-        fields = ['Job_Name',
-                  'Job_Type',
-                  'Job_Description',
-                  'Job_Requirements',
-                  'Job_Experience',
-                  'Job_Salary',
-                  'Job_Location',
+        fields = [
+                  'Company_Name',
+                  'Title',
+                  'Work_Type',
+                  'Description',
+                  'Requirements',
+                  'Experience',
+                  'Salary',
+                  'Location',
+                  'Vacancy',
                   ]
 
 
@@ -69,6 +66,9 @@ class ProfileUpdateFrom(forms.ModelForm):
     class Meta:
         model = Profile
         fields = [
+            'age',
+            'profession',
+            'address',
             'phone',
             'profile_picture',
         ]

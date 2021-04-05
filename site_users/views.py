@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UseRegistrationForm
-
 from .forms import UserJobSetForm, UserUpdateForm, ProfileUpdateFrom
 from django.contrib.auth.decorators import login_required
 
@@ -53,28 +52,17 @@ def contract(request):
     return render(request, 'users/contract.html')
 
 
-def register(request):
-    if request.method == "POST":
-        registration_form = UseRegistrationForm(request.POST)
-        if registration_form.is_valid():
-            registration_form.save()
-            return redirect('first-page')
-
-    else:
-        registration_form = UseRegistrationForm()
-        context = {
-            'form': registration_form
-        }
-
-        return render(request, 'users/register.html', context)
-
-
 def register_admin(request):
     if request.method == "POST":
         registration_form = UserJobSetForm(request.POST)
         if registration_form.is_valid():
             registration_form.save()
-            return redirect('job-set')
+            return redirect('login')
+        else:
+            context = {
+                'form': registration_form
+            }
+            return render(request, 'users/register_admin.html', context)
 
     else:
         registration_form = UseRegistrationForm()
@@ -91,6 +79,12 @@ def job_set(request):
         if set_form.is_valid():
             set_form.save()
             return redirect('work')
+        else:
+            set_form = UserJobSetForm()
+            context = {
+                'form': set_form
+            }
+            return render(request, 'users/job_set.html', context)
 
     else:
         set_form = UserJobSetForm()
