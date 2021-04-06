@@ -16,17 +16,48 @@ class SiteUsers(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=20)
+    first_name = models.CharField(max_length=10, blank=True)
+    last_name = models.CharField(max_length=10, blank=True)
     about = models.CharField(max_length=150, blank=True)
     age = models.CharField(max_length=3, blank=True)
     profession = models.CharField(max_length=15, blank=True)
     address = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=10, blank=True)
+    country = models.CharField(max_length=10, blank=True)
     email = models.EmailField()
     phone = models.IntegerField()
     profile_picture = models.ImageField(default='default.jpg', upload_to='profile_picture')
 
     def __str__(self):
         return {self.user.username}
+
+    def __str__(self):
+        return {self.user.email}
+
+    def __str__(self):
+        return {self.user.profile.phone}
+
+    def __str__(self):
+        return {self.user.profile.about}
+
+    def __str__(self):
+        return {self.user.profile.age}
+
+    def __str__(self):
+        return {self.user.profile.profession}
+
+    def __str__(self):
+        return {self.user.profile.country}
+
+    def __str__(self):
+        return {self.user.profile.address}
+
+    def __str__(self):
+        return {self.user.profile.city}
+
+
+
+
 
 
 

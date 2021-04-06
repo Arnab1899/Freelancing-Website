@@ -55,20 +55,21 @@ class UserUpdateForm(forms.ModelForm):
             'first_name',
             'last_name',
             'email',
-
         ]
 
 
 class ProfileUpdateFrom(forms.ModelForm):
-    phone = forms.CharField(max_length=15, required=False)
     profile_picture = forms.ImageField(required=False)
 
     class Meta:
         model = Profile
         fields = [
+            'about',
             'age',
             'profession',
             'address',
+            'city',
+            'country',
             'phone',
             'profile_picture',
         ]
