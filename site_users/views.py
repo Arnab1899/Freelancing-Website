@@ -57,7 +57,7 @@ def register_admin(request):
         registration_form = UserJobSetForm(request.POST)
         if registration_form.is_valid():
             registration_form.save()
-            return redirect('login')
+            return redirect('first-page')
         else:
             context = {
                 'form': registration_form

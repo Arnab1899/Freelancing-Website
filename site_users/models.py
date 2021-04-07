@@ -29,31 +29,37 @@ class Profile(models.Model):
     profile_picture = models.ImageField(default='default.jpg', upload_to='profile_picture')
 
     def __str__(self):
-        return {self.user.username}
+        return str(self.user.first_name)
 
     def __str__(self):
-        return {self.user.email}
+        return str(self.user.last_name)
 
     def __str__(self):
-        return {self.user.profile.phone}
+        return str(self.user.email)
 
     def __str__(self):
-        return {self.user.profile.about}
+        return str(self.user.profile.phone)
 
     def __str__(self):
-        return {self.user.profile.age}
+        return str(self.user.profile.about)
 
     def __str__(self):
-        return {self.user.profile.profession}
+        return str(self.user.profile.age)
 
     def __str__(self):
-        return {self.user.profile.country}
+        return str(self.user.profile.profession)
 
     def __str__(self):
-        return {self.user.profile.address}
+        return str(self.user.profile.country)
 
     def __str__(self):
-        return {self.user.profile.city}
+        return str(self.user.profile.address)
+
+    def __str__(self):
+        return str(self.user.profile.city)
+
+    def __str__(self):
+        return str(self.user.username)
 
 
 
