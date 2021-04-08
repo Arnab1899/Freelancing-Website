@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UseRegistrationForm
-from .forms import UserJobSetForm, UserUpdateForm, ProfileUpdateFrom
+from .forms import UserUpdateForm, UserJobSetForm, ProfileUpdateFrom
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user, authenticate, login
 
 
 def base(request):
@@ -52,25 +54,34 @@ def contract(request):
     return render(request, 'users/contract.html')
 
 
-def register_admin(request):
+def register(request):
     if request.method == "POST":
-        registration_form = UserJobSetForm(request.POST)
-        if registration_form.is_valid():
-            registration_form.save()
-            return redirect('first-page')
+        reg_form = UseRegistrationForm(request.POST)
+        if reg_form.is_valid():
+            reg_form.save()
+            return redirect('login')
         else:
             context = {
-                'form': registration_form
+                'form': reg_form
             }
-            return render(request, 'users/register_admin.html', context)
+            return render(request, 'users/register.html', context)
 
     else:
-        registration_form = UseRegistrationForm()
+        reg_form = UseRegistrationForm()
         context = {
-            'form': registration_form
+            'form': reg_form
         }
 
-        return render(request, 'users/register_admin.html', context)
+        return render(request, 'users/register.html', context)
+
+
+def login(request):
+    UserReg = get_user(request)
+    context = {
+        'name': UserReg.username,
+        'email': UserReg.email,
+    }
+    return render(request, 'users/login.html', context)
 
 
 def job_set(request):

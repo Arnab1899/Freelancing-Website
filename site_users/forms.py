@@ -1,18 +1,18 @@
 from django.contrib.auth.forms import UserCreationForm, forms
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, UserReg
 
 
 class UseRegistrationForm(UserCreationForm):
-    First_name = forms.CharField()
-    Last_name = forms.CharField()
+    first_name = forms.CharField()
+    last_name = forms.CharField()
     email = forms.EmailField()
 
     class Meta:
         model = User
         fields = ['username',
-                  'First_name',
-                  'Last_name',
+                  'first_name',
+                  'last_name',
                   'email',
                   'password1',
                   'password2',
@@ -42,7 +42,7 @@ class UserJobSetForm(forms.ModelForm):
                   'Salary',
                   'Location',
                   'Vacancy',
-                  ]
+        ]
 
 
 class UserUpdateForm(forms.ModelForm):

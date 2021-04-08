@@ -8,3 +8,5 @@ class Jobs(models.Model):
     Salary = models.CharField(max_length=10, db_column='Salary')
     Requirements = models.TextField(db_column='Requirements')
     Experience = models.TextField(db_column='Experience')
+
+

@@ -14,6 +14,14 @@ class SiteUsers(models.Model):
     Address = models.CharField(max_length=100, db_column='Address')
 
 
+class UserReg(models.Model):
+    user_name = models.TextField(max_length=10)
+    first_name = models.CharField(max_length=10)
+    last_name = models.CharField(max_length=10)
+    email = models.EmailField()
+    password = models.CharField(max_length=30)
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=10, blank=True)
@@ -25,7 +33,7 @@ class Profile(models.Model):
     city = models.CharField(max_length=10, blank=True)
     country = models.CharField(max_length=10, blank=True)
     email = models.EmailField()
-    phone = models.IntegerField()
+    phone = models.CharField(max_length=15, blank=True)
     profile_picture = models.ImageField(default='default.jpg', upload_to='profile_picture')
 
     def __str__(self):
