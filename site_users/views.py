@@ -5,6 +5,7 @@ from .forms import UserUpdateForm, UserJobSetForm, ProfileUpdateFrom
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user, authenticate, login
+from .models import Profile
 
 
 def base(request):
@@ -17,11 +18,14 @@ def profile(request):
 
 @login_required
 def profile_update(request):
+
+    if len(Profile.objects.filter(user=request.user)) == 0:
+        profile = Profile(user = request.user)
+        profile.save()
+
     if request.method == 'POST':
         user_update_form = UserUpdateForm(request.POST, instance=request.user)
-        profile_update_form = ProfileUpdateFrom(request.POST,
-                                                request.FILES,
-                                                instance=request.user.profile)
+        profile_update_form = ProfileUpdateFrom(request.POST, request.FILES, instance=request.user.profile)
 
         if user_update_form.is_valid() and profile_update_form.is_valid():
             user_update_form.save()
@@ -59,6 +63,7 @@ def register(request):
         reg_form = UseRegistrationForm(request.POST)
         if reg_form.is_valid():
             reg_form.save()
+
             return redirect('login')
         else:
             context = {
