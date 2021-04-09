@@ -32,9 +32,9 @@ urlpatterns = [
     path('find_work/', site_views.find_work, name='work-find'),
     path('', site_views.base, name='base-page'),
     path('', site_views.find_work, name='work'),
-    path('job_set', site_views.job_set, name='job-set'),
-    path('contract', site_views.contract, name='contract'),
-    path('about', site_views.about, name='about'),
+    path('job_set/', site_views.job_set, name='job-set'),
+    path('contract/', site_views.contract, name='contract'),
+    path('about/', site_views.about, name='about'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/base.html'), name='logout'),
 

@@ -1,3 +1,4 @@
+from django.contrib import auth
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UseRegistrationForm
@@ -61,8 +62,13 @@ def contract(request):
 def register(request):
     if request.method == "POST":
         reg_form = UseRegistrationForm(request.POST)
+
         if reg_form.is_valid():
             reg_form.save()
+            # username = reg_form.cleaned_data.get('username')
+            # password = reg_form.cleaned_data.get('password1')
+            # us = authenticate(username=username, password=password)
+            # auth.login(request, us)
 
             return redirect('login')
         else:
@@ -81,11 +87,14 @@ def register(request):
 
 
 def login(request):
-    UserReg = get_user(request)
-    context = {
+    if request.method=='POST':
+
+        UserReg = get_user(request)
+        context = {
         'name': UserReg.username,
         'email': UserReg.email,
-    }
+        }
+
     return render(request, 'users/login.html', context)
 
 

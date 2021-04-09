@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, forms
 from django.contrib.auth.models import User
 from .models import Profile, UserReg
+from post_work.models import PostWork
 
 
 class UseRegistrationForm(UserCreationForm):
@@ -19,30 +20,7 @@ class UseRegistrationForm(UserCreationForm):
                   ]
 
 
-class UserJobSetForm(forms.ModelForm):
-    Company_Name = forms.CharField()
-    Title = forms.CharField()
-    Work_Type = forms.CharField()
-    Description = forms.CharField()
-    Requirements = forms.CharField()
-    Experience = forms.CharField(required=False)
-    Salary = forms.IntegerField()
-    Location = forms.CharField(required=False)
-    Vacancy = forms.CharField(required=False)
 
-    class Meta:
-        model = User
-        fields = [
-                  'Company_Name',
-                  'Title',
-                  'Work_Type',
-                  'Description',
-                  'Requirements',
-                  'Experience',
-                  'Salary',
-                  'Location',
-                  'Vacancy',
-        ]
 
 
 class UserUpdateForm(forms.ModelForm):
