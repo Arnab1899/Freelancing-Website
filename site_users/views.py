@@ -8,12 +8,17 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user, authenticate, login
 from .models import Profile
 
+from django.core.mail import send_mail
 from post_work.models import PostWork
+from django.template.loader import render_to_string
+from django.conf import settings
+
 
 def base(request):
     return render(request, 'users/base.html')
 
 
+@login_required
 def profile(request):
     return render(request, 'users/profile.html')
 
@@ -70,7 +75,6 @@ def register(request):
             # password = reg_form.cleaned_data.get('password1')
             # us = authenticate(username=username, password=password)
             # auth.login(request, us)
-
             return redirect('login')
         else:
             context = {
@@ -96,9 +100,19 @@ def login(request):
         'email': UserReg.email,
         }
 
+        subejct = "JOB GARAGE BANGLADESH"
+        body = render_to_string('user/intro_email.html')
+        send_mail(
+            subejct,
+            body,
+            settings.EMAIL_HOST_user
+            [UserReg.email]
+        )
+
     return render(request, 'users/login.html', context)
 
 
+@login_required
 def job_set(request):
     if request.method == "POST":
         set_form = UserJobSetForm(request.POST)
