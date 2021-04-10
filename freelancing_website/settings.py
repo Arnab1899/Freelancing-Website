@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'job_seeker',
     'jobs',
     'post_work',
-    'find_work',
+    # 'find_work',
 
 
 ]

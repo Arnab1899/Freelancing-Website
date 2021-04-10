@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user, authenticate, login
 from .models import Profile
 
+from post_work.models import PostWork
 
 def base(request):
     return render(request, 'users/base.html')
@@ -121,7 +122,10 @@ def job_set(request):
 
 @login_required
 def find_work(request):
-    return render(request, 'users/find_work.html')
+    from post_work.models import PostWork
+    pw = PostWork.objects.all()
+
+    return render(request, 'users/find_work.html', {'pw':pw})
 
 
 
